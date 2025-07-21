@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.venv/
+venv/
+ENV/
+env/
+
+# Development files
+.git/
+.gitignore
+README.md
+.pytest_cache/
+.coverage
+.tox/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data (optional - uncomment if you don't want to include training data)
+# data/
+
+# Notebooks
+notebooks/
+*.ipynb

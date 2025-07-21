@@ -139,21 +139,50 @@ uv run python script.py
 
 ---
 
-## (Opsional) Deployment dengan Docker
+## 🐳 Deployment dengan Docker
 
-Jika Anda memiliki Docker, Anda dapat menjalankan aplikasi di dalam container.
+Proyek ini telah dikonfigurasi untuk menjalankan dengan Docker menggunakan uv.
 
-### a. Build Docker Image
+### Prasyarat
+- Docker terinstal di sistem Anda
+- Pastikan semua file proyek (app/, model/, templates/) ada di direktori
 
+### Langkah-langkah Docker:
+
+#### 1. Build Docker Image
 ```sh
 docker build -t car-prediction-api .
 ```
 
-### b. Jalankan Docker Container
-
+#### 2. Jalankan Container
 ```sh
 docker run -d --name car-api-container -p 8000:8000 car-prediction-api
 ```
 
-API akan berjalan di `http://localhost:8000`.  
-Frontend tetap dibuka secara lokal di browser Anda.
+#### 3. Akses Aplikasi
+- **Frontend:** http://localhost:8000
+- **API Docs:** http://localhost:8000/docs
+- **API Info:** http://localhost:8000/api
+
+### Perintah Docker Berguna:
+
+```sh
+# Lihat container yang berjalan
+docker ps
+
+# Lihat logs container
+docker logs car-api-container
+
+# Masuk ke container (debugging)
+docker exec -it car-api-container /bin/bash
+
+# Hentikan container
+docker stop car-api-container
+
+# Hapus container
+docker rm car-api-container
+
+# Hapus image
+docker rmi car-prediction-api
+```
+
