@@ -32,7 +32,7 @@ car-price-prediction/
 ├── data/                 # Dataset yang digunakan untuk training
 │   └── CarPrice_Assignment.csv
 │
-├── notebooks/            # Notebook Jupyter untuk eksperimen dan
+├── notebooks/            # Notebook Jupyter untuk eksperimen
     └── car_price_model.ipynb
 
 
