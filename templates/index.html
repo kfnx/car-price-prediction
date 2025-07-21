@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prediksi Harga Mobil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-4xl">
+      <div class="bg-white shadow-lg rounded-xl p-6 sm:p-8">
+        <h1 class="text-3xl font-bold text-center mb-2 text-gray-900">
+          Prediksi Harga Mobil
+        </h1>
+        <p class="text-center text-gray-500 mb-8">
+          Masukkan fitur-fitur mobil untuk mendapatkan estimasi harga.
+        </p>
+
+        <form
+          id="prediction-form"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <!-- Input Fields (Sekarang mengirim nilai mentah/string) -->
+          <div>
+            <label
+              for="CarName"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Nama Perusahaan</label
+            >
+            <select
+              id="CarName"
+              name="CarName"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            >
+              <option value="alfa-romero">alfa-romero</option>
+              <option value="audi">audi</option>
+              <option value="bmw">bmw</option>
+              <option value="buick">buick</option>
+              <option value="chevrolet">chevrolet</option>
+              <option value="dodge">dodge</option>
+              <option value="honda">honda</option>
+              <option value="isuzu">isuzu</option>
+              <option value="jaguar">jaguar</option>
+              <option value="mazda">mazda</option>
+              <option value="mercury">mercury</option>
+              <option value="mitsubishi">mitsubishi</option>
+              <option value="nissan">nissan</option>
+              <option value="peugeot">peugeot</option>
+              <option value="plymouth">plymouth</option>
+              <option value="porsche">porsche</option>
+              <option value="renault">renault</option>
+              <option value="saab">saab</option>
+              <option value="subaru">subaru</option>
+              <option value="toyota">toyota</option>
+              <option value="volkswagen">volkswagen</option>
+              <option value="volvo">volvo</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="fueltype"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Tipe Bahan Bakar</label
+            >
+            <select
+              id="fueltype"
+              name="fueltype"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            >
+              <option value="gas">Gas</option>
+              <option value="diesel">Diesel</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="aspiration"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Aspirasi</label
+            >
+            <select
+              id="aspiration"
+              name="aspiration"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            >
+              <option value="std">std</option>
+              <option value="turbo">turbo</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="doornumber"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Jumlah Pintu</label
+            >
+            <select
+              id="doornumber"
+              name="doornumber"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            >
+              <option value="two">two</option>
+              <option value="four">four</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="carbody"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Tipe Bodi</label
+            >
+            <select
+              id="carbody"
+              name="carbody"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            >
+              <option value="sedan">sedan</option>
+              <option value="hatchback">hatchback</option>
+              <option value="wagon">wagon</option>
+              <option value="hardtop">hardtop</option>
+              <option value="convertible">convertible</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="drivewheel"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Roda Penggerak</label
+            >
+            <select
+              id="drivewheel"
+              name="drivewheel"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            >
+              <option value="fwd">fwd</option>
+              <option value="rwd">rwd</option>
+              <option value="4wd">4wd</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="enginelocation"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Lokasi Mesin</label
+            >
+            <select
+              id="enginelocation"
+              name="enginelocation"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            >
+              <option value="front">front</option>
+              <option value="rear">rear</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="enginetype"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Tipe Mesin</label
+            >
+            <select
+              id="enginetype"
+              name="enginetype"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            >
+              <option value="ohc">ohc</option>
+              <option value="ohcf">ohcf</option>
+              <option value="ohcv">ohcv</option>
+              <option value="dohc">dohc</option>
+              <option value="l">l</option>
+              <option value="rotor">rotor</option>
+              <option value="dohcv">dohcv</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="cylindernumber"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Jumlah Silinder</label
+            >
+            <select
+              id="cylindernumber"
+              name="cylindernumber"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            >
+              <option value="four">four</option>
+              <option value="six">six</option>
+              <option value="five">five</option>
+              <option value="three">three</option>
+              <option value="twelve">twelve</option>
+              <option value="two">two</option>
+              <option value="eight">eight</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="fuelsystem"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Sistem Bahan Bakar</label
+            >
+            <select
+              id="fuelsystem"
+              name="fuelsystem"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            >
+              <option value="mpfi">mpfi</option>
+              <option value="2bbl">2bbl</option>
+              <option value="mfi">mfi</option>
+              <option value="1bbl">1bbl</option>
+              <option value="spfi">spfi</option>
+              <option value="4bbl">4bbl</option>
+              <option value="idi">idi</option>
+              <option value="spdi">spdi</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="wheelbase"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Wheelbase</label
+            >
+            <input
+              type="number"
+              step="0.1"
+              name="wheelbase"
+              id="wheelbase"
+              value="99.8"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+          <div>
+            <label
+              for="carlength"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Panjang Mobil</label
+            >
+            <input
+              type="number"
+              step="0.1"
+              name="carlength"
+              id="carlength"
+              value="170"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+          <div>
+            <label
+              for="carwidth"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Lebar Mobil</label
+            >
+            <input
+              type="number"
+              step="0.1"
+              name="carwidth"
+              id="carwidth"
+              value="65"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+          <div>
+            <label
+              for="carheight"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Tinggi Mobil</label
+            >
+            <input
+              type="number"
+              step="0.1"
+              name="carheight"
+              id="carheight"
+              value="54"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+          <div>
+            <label
+              for="curbweight"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Curb Weight</label
+            >
+            <input
+              type="number"
+              name="curbweight"
+              id="curbweight"
+              value="2500"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+          <div>
+            <label
+              for="enginesize"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Ukuran Mesin</label
+            >
+            <input
+              type="number"
+              name="enginesize"
+              id="enginesize"
+              value="130"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+          <div>
+            <label
+              for="boreratio"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Bore Ratio</label
+            >
+            <input
+              type="number"
+              step="0.01"
+              name="boreratio"
+              id="boreratio"
+              value="3.47"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+          <div>
+            <label
+              for="stroke"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Stroke</label
+            >
+            <input
+              type="number"
+              step="0.01"
+              name="stroke"
+              id="stroke"
+              value="2.68"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+          <div>
+            <label
+              for="compressionratio"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Rasio Kompresi</label
+            >
+            <input
+              type="number"
+              step="0.1"
+              name="compressionratio"
+              id="compressionratio"
+              value="9.0"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+          <div>
+            <label
+              for="horsepower"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Horsepower</label
+            >
+            <input
+              type="number"
+              name="horsepower"
+              id="horsepower"
+              value="111"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+          <div>
+            <label
+              for="peakrpm"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Peak RPM</label
+            >
+            <input
+              type="number"
+              name="peakrpm"
+              id="peakrpm"
+              value="5000"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+          <div>
+            <label
+              for="citympg"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >City MPG</label
+            >
+            <input
+              type="number"
+              name="citympg"
+              id="citympg"
+              value="21"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+          <div>
+            <label
+              for="highwaympg"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Highway MPG</label
+            >
+            <input
+              type="number"
+              name="highwaympg"
+              id="highwaympg"
+              value="27"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            />
+          </div>
+        </form>
+
+        <div class="mt-8 text-center">
+          <button
+            id="submit-btn"
+            class="w-full md:w-auto inline-flex justify-center py-3 px-8 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all"
+          >
+            Prediksi Harga
+          </button>
+        </div>
+
+        <div id="result-container" class="mt-8 text-center hidden">
+          <h2 class="text-2xl font-semibold text-gray-800">Estimasi Harga:</h2>
+          <p id="result" class="text-4xl font-bold text-indigo-600 mt-2"></p>
+        </div>
+        <div id="error-container" class="mt-6 text-center hidden">
+          <p id="error-message" class="text-lg font-medium text-red-600"></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById("prediction-form");
+      const submitBtn = document.getElementById("submit-btn");
+      const resultContainer = document.getElementById("result-container");
+      const resultEl = document.getElementById("result");
+      const errorContainer = document.getElementById("error-container");
+      const errorMessageEl = document.getElementById("error-message");
+
+      submitBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const data = {};
+        for (let [key, value] of formData.entries()) {
+          // Konversi ke tipe data yang benar (angka) jika bukan string
+          const isNumericField = !isNaN(parseFloat(value)) && isFinite(value);
+          const selectFields = [
+            "CarName",
+            "fueltype",
+            "aspiration",
+            "doornumber",
+            "carbody",
+            "drivewheel",
+            "enginelocation",
+            "enginetype",
+            "cylindernumber",
+            "fuelsystem",
+          ];
+
+          if (selectFields.includes(key)) {
+            data[key] = value;
+          } else {
+            data[key] = isNumericField ? parseFloat(value) : value;
+          }
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Memprediksi...";
+        resultContainer.classList.add("hidden");
+        errorContainer.classList.add("hidden");
+
+        try {
+          const response = await fetch("http://127.0.0.1:8000/predict/", {
+            // URL diperbaiki di sini
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(
+              errorData.detail || `HTTP error! status: ${response.status}`
+            );
+          }
+
+          const result = await response.json();
+
+          resultEl.textContent = `$${result.price.toFixed(2)}`;
+          resultContainer.classList.remove("hidden");
+        } catch (error) {
+          console.error("Error:", error);
+          errorMessageEl.textContent = `Gagal melakukan prediksi. Pastikan server API berjalan dan dapat diakses. Error: ${error.message}`;
+          errorContainer.classList.remove("hidden");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Prediksi Harga";
+        }
+      });
+    </script>
+  </body>
+</html>
