@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 import pandas as pd
 from .prediction import predict_price
 from .schema import CarFeaturesRaw, PredictionOut
@@ -20,6 +22,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Mount static files
+app.mount("/static", StaticFiles(directory="templates"), name="static")
+
 @app.post("/predict/", response_model=PredictionOut)
 def predict(features: CarFeaturesRaw):
     """
@@ -37,6 +42,10 @@ def predict(features: CarFeaturesRaw):
     
     return {"price": price}
 
+@app.get("/api")
+def api_root():
+    return {"message": "Selamat datang di API Prediksi Harga Mobil"}
+
 @app.get("/")
 def read_root():
-    return {"message": "Selamat datang di API Prediksi Harga Mobil"}
+    return FileResponse('templates/index.html')

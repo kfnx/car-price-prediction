@@ -32,9 +32,12 @@ car-price-prediction/
 ├── data/                 # Dataset yang digunakan untuk training
 │   └── CarPrice_Assignment.csv
 │
-├── notebooks/            # Notebook Jupyter untuk eksperimen
-    └── car_price_model.ipynb
-
+├── templates/            # Frontend files  
+│   └── index.html        # Web interface untuk prediksi
+│
+├── pyproject.toml        # Project dependencies dan konfigurasi
+├── requirements.txt      # Legacy dependencies file (optional)
+└── .gitignore           # Files yang diabaikan git
 
 ```
 
@@ -42,6 +45,7 @@ car-price-prediction/
 
 ## 🚀 Teknologi yang Digunakan
 
+- **Package Manager:** uv (fast Python package manager)
 - **Backend:** Python, FastAPI
 - **Frontend:** HTML, Tailwind CSS (via CDN), JavaScript
 - **Machine Learning:** Scikit-learn, Pandas
@@ -54,58 +58,84 @@ car-price-prediction/
 
 ### 1. Persiapan Lingkungan
 
-Pastikan Anda sudah menginstal **Python 3.8+** dan **pip**.
+Pastikan Anda sudah menginstal **Python 3.11+**.
 
 #### a. Unduh atau Clone Proyek
 
 Unduh semua file dan pastikan struktur folder sesuai dengan penjelasan di atas.
 
-#### b. Buat dan Aktifkan Virtual Environment
+#### b. Instal uv
 
-Disarankan menggunakan virtual environment untuk mengisolasi dependensi proyek.
+Instal uv package manager (jika belum terinstal):
 
 ```sh
-# Buka terminal di direktori utama proyek
+# macOS/Linux:
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Buat virtual environment
-python -m venv venv
-
-# Aktifkan virtual environment
-# - Untuk Windows:
-venv\Scripts\activate
-
-# - Untuk macOS/Linux:
-source venv/bin/activate
+# Windows:
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
 #### c. Instal Dependensi
 
-Instal semua library yang diperlukan:
+uv akan otomatis mengelola virtual environment dan dependensi:
 
 ```sh
-pip install -r requirements.txt
+uv sync
 ```
 
 ---
 
 ### 2. Jalankan Server API (Backend)
 
-Setelah semua library terinstal, jalankan server FastAPI:
+Setelah semua library terinstal, jalankan server FastAPI dengan uv:
 
 ```sh
-uvicorn app.main:app --reload
+uv run uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-Server akan berjalan di `http://127.0.0.1:8000`.  
-Buka `http://127.0.0.1:8000/docs` di browser untuk dokumentasi interaktif (Swagger UI).
+Server akan berjalan di `http://localhost:8000`.
 
 ---
 
-### 3. Gunakan Antarmuka Pengguna (Frontend)
+### 3. Akses Aplikasi
 
-- Pastikan server API sudah berjalan.
-- Buka file `index.html` di browser Anda.
-- Isi form dengan fitur mobil yang ingin diprediksi, klik "Prediksi Harga", dan estimasi harga akan muncul.
+- **Frontend (UI Form):** Buka `http://localhost:8000` di browser Anda
+- **API Documentation:** Buka `http://localhost:8000/docs` untuk dokumentasi interaktif (Swagger UI)
+- **API Info:** Buka `http://localhost:8000/api` untuk pesan selamat datang API
+
+Isi form dengan fitur mobil yang ingin diprediksi, klik "Prediksi Harga", dan estimasi harga akan muncul.
+
+---
+
+## 📦 Manajemen Dependensi dengan uv
+
+Proyek ini menggunakan **uv** sebagai package manager yang lebih cepat daripada pip tradisional.
+
+### Keuntungan uv:
+- ✅ Manajemen virtual environment otomatis
+- ✅ Instalasi dependensi yang sangat cepat  
+- ✅ Lockfile untuk reproducible builds
+- ✅ Tidak perlu aktivasi manual environment
+
+### Perintah uv yang berguna:
+
+```sh
+# Menjalankan aplikasi
+uv run uvicorn app.main:app --reload
+
+# Menambah dependensi baru
+uv add pandas numpy
+
+# Menambah development dependencies  
+uv add --dev pytest
+
+# Update semua dependensi
+uv sync --upgrade
+
+# Menjalankan skrip Python apa pun
+uv run python script.py
+```
 
 ---
 
