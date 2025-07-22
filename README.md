@@ -32,9 +32,12 @@ car-price-prediction/
 ├── data/                 # Dataset yang digunakan untuk training
 │   └── CarPrice_Assignment.csv
 │
-├── notebooks/            # Notebook Jupyter untuk eksperimen
-    └── car_price_model.ipynb
-
+├── templates/            # Frontend files  
+│   └── index.html        # Web interface untuk prediksi
+│
+├── pyproject.toml        # Project dependencies dan konfigurasi
+├── requirements.txt      # Legacy dependencies file (optional)
+└── .gitignore           # Files yang diabaikan git
 
 ```
 
@@ -42,6 +45,7 @@ car-price-prediction/
 
 ## 🚀 Teknologi yang Digunakan
 
+- **Package Manager:** uv (fast Python package manager)
 - **Backend:** Python, FastAPI
 - **Frontend:** HTML, Tailwind CSS (via CDN), JavaScript
 - **Machine Learning:** Scikit-learn, Pandas
@@ -54,76 +58,131 @@ car-price-prediction/
 
 ### 1. Persiapan Lingkungan
 
-Pastikan Anda sudah menginstal **Python 3.8+** dan **pip**.
+Pastikan Anda sudah menginstal **Python 3.11+**.
 
 #### a. Unduh atau Clone Proyek
 
 Unduh semua file dan pastikan struktur folder sesuai dengan penjelasan di atas.
 
-#### b. Buat dan Aktifkan Virtual Environment
+#### b. Instal uv
 
-Disarankan menggunakan virtual environment untuk mengisolasi dependensi proyek.
+Instal uv package manager (jika belum terinstal):
 
 ```sh
-# Buka terminal di direktori utama proyek
+# macOS/Linux:
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Buat virtual environment
-python -m venv venv
-
-# Aktifkan virtual environment
-# - Untuk Windows:
-venv\Scripts\activate
-
-# - Untuk macOS/Linux:
-source venv/bin/activate
+# Windows:
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
 #### c. Instal Dependensi
 
-Instal semua library yang diperlukan:
+uv akan otomatis mengelola virtual environment dan dependensi:
 
 ```sh
-pip install -r requirements.txt
+uv sync
 ```
 
 ---
 
 ### 2. Jalankan Server API (Backend)
 
-Setelah semua library terinstal, jalankan server FastAPI:
+Setelah semua library terinstal, jalankan server FastAPI dengan uv:
 
 ```sh
-uvicorn app.main:app --reload
+uv run uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-Server akan berjalan di `http://127.0.0.1:8000`.  
-Buka `http://127.0.0.1:8000/docs` di browser untuk dokumentasi interaktif (Swagger UI).
+Server akan berjalan di `http://localhost:8000`.
 
 ---
 
-### 3. Gunakan Antarmuka Pengguna (Frontend)
+### 3. Akses Aplikasi
 
-- Pastikan server API sudah berjalan.
-- Buka file `index.html` di browser Anda.
-- Isi form dengan fitur mobil yang ingin diprediksi, klik "Prediksi Harga", dan estimasi harga akan muncul.
+- **Frontend (UI Form):** Buka `http://localhost:8000` di browser Anda
+- **API Documentation:** Buka `http://localhost:8000/docs` untuk dokumentasi interaktif (Swagger UI)
+- **API Info:** Buka `http://localhost:8000/api` untuk pesan selamat datang API
+
+Isi form dengan fitur mobil yang ingin diprediksi, klik "Prediksi Harga", dan estimasi harga akan muncul.
 
 ---
 
-## (Opsional) Deployment dengan Docker
+## 📦 Manajemen Dependensi dengan uv
 
-Jika Anda memiliki Docker, Anda dapat menjalankan aplikasi di dalam container.
+Proyek ini menggunakan **uv** sebagai package manager yang lebih cepat daripada pip tradisional.
 
-### a. Build Docker Image
+### Keuntungan uv:
+- ✅ Manajemen virtual environment otomatis
+- ✅ Instalasi dependensi yang sangat cepat  
+- ✅ Lockfile untuk reproducible builds
+- ✅ Tidak perlu aktivasi manual environment
 
+### Perintah uv yang berguna:
+
+```sh
+# Menjalankan aplikasi
+uv run uvicorn app.main:app --reload
+
+# Menambah dependensi baru
+uv add pandas numpy
+
+# Menambah development dependencies  
+uv add --dev pytest
+
+# Update semua dependensi
+uv sync --upgrade
+
+# Menjalankan skrip Python apa pun
+uv run python script.py
+```
+
+---
+
+## 🐳 Deployment dengan Docker
+
+Proyek ini telah dikonfigurasi untuk menjalankan dengan Docker menggunakan uv.
+
+### Prasyarat
+- Docker terinstal di sistem Anda
+- Pastikan semua file proyek (app/, model/, templates/) ada di direktori
+
+### Langkah-langkah Docker:
+
+#### 1. Build Docker Image
 ```sh
 docker build -t car-prediction-api .
 ```
 
-### b. Jalankan Docker Container
-
+#### 2. Jalankan Container
 ```sh
 docker run -d --name car-api-container -p 8000:8000 car-prediction-api
 ```
 
-API akan berjalan di `http://localhost:8000`.  
-Frontend tetap dibuka secara lokal di browser Anda.
+#### 3. Akses Aplikasi
+- **Frontend:** http://localhost:8000
+- **API Docs:** http://localhost:8000/docs
+- **API Info:** http://localhost:8000/api
+
+### Perintah Docker Berguna:
+
+```sh
+# Lihat container yang berjalan
+docker ps
+
+# Lihat logs container
+docker logs car-api-container
+
+# Masuk ke container (debugging)
+docker exec -it car-api-container /bin/bash
+
+# Hentikan container
+docker stop car-api-container
+
+# Hapus container
+docker rm car-api-container
+
+# Hapus image
+docker rmi car-prediction-api
+```
+
