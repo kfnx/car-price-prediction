@@ -1,6 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 import pandas as pd
 from .prediction import predict_price
 from .schema import CarFeaturesRaw, PredictionOut
@@ -9,7 +10,13 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+# Setup Jinja2 templates
+templates = Jinja2Templates(directory="templates")
+
 # Konfigurasi CORS
+# PERINGATAN: Konfigurasi ini sangat permisif dan cocok untuk development.
+# Untuk produksi, batasi origin ke domain frontend Anda.
+# Contoh: origins = ["https://your-frontend-domain.com"]
 origins = [
     "*" # Mengizinkan semua origin, cocok untuk development
 ]
@@ -22,8 +29,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Mount static files
-app.mount("/static", StaticFiles(directory="templates"), name="static")
+# Mount static files (misalnya untuk CSS, JS, gambar)
+# Pastikan Anda memiliki folder 'static' di root proyek Anda.
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.post("/predict/", response_model=PredictionOut)
 def predict(features: CarFeaturesRaw):
@@ -46,6 +54,10 @@ def predict(features: CarFeaturesRaw):
 def api_root():
     return {"message": "Selamat datang di API Prediksi Harga Mobil"}
 
-@app.get("/")
-def read_root():
-    return FileResponse('templates/index.html')
+@app.get("/", response_class=HTMLResponse)
+def read_root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+@app.get("/faq/", response_class=HTMLResponse)
+def read_faq(request: Request):
+    return templates.TemplateResponse("faq.html", {"request": request})

@@ -34,6 +34,10 @@ car-price-prediction/
 │
 ├── templates/            # Frontend files  
 │   └── index.html        # Web interface untuk prediksi
+│   └── faq.html          # Halaman FAQ
+│
+├── static/               # File statis (CSS, JS, Gambar)
+│   └── js/
 │
 ├── pyproject.toml        # Project dependencies dan konfigurasi
 ├── requirements.txt      # Legacy dependencies file (optional)
@@ -47,7 +51,7 @@ car-price-prediction/
 
 - **Package Manager:** uv (fast Python package manager)
 - **Backend:** Python, FastAPI
-- **Frontend:** HTML, Tailwind CSS (via CDN), JavaScript
+- **Frontend (Templating):** Jinja2, HTML, Tailwind CSS (via CDN), JavaScript
 - **Machine Learning:** Scikit-learn, Pandas
 - **Server:** Uvicorn
 - **Containerization:** Docker
@@ -185,4 +189,3 @@ docker rm car-api-container
 # Hapus image
 docker rmi car-prediction-api
 ```
-
