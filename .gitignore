@@ -74,3 +74,17 @@ Pipfile.lock
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# --- Environment & Logs ---
+# Ignore environment variable files which may contain secrets
+.env
+*.env
+.env.*
+
+# Ignore log files
+*.log
+
+# --- Docker ---
+# Ignore docker-compose override files used for local development
+docker-compose.override.yml
+docker-compose.override.yaml

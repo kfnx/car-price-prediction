@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Prediksi Harga Mobil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        html {
+            height: 100%;
+            overflow-y: scroll; /* Selalu tampilkan scrollbar */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: url('/static/images/car-background.jpg') center/cover fixed;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+        .faq-item.active svg {
+            transform: rotate(180deg);
+        }
+        main {
+            flex: 1;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex justify-between items-center h-16">
+                <div class="text-xl font-bold text-gray-900">GEELY AUTO</div>
+                <nav class="flex items-center space-x-4 sm:space-x-8">
+                    <a href="/#prediction-section" class="text-sm font-semibold text-gray-900 hover:text-yellow-900 transition-colors">Prediksi Harga</a>
+                    <a href="/faq/" class="text-sm font-semibold text-gray-900 hover:text-yellow-900 transition-colors">FAQ</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Spacer for header -->
+    <div class="h-16"></div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 sm:px-6 py-8 mb-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Title Box -->
+            <div class="bg-white/80 backdrop-blur-md rounded-lg shadow-lg p-6 mb-8 text-center">
+                <h1 class="text-3xl font-bold text-gray-900">Pertanyaan yang Sering Diajukan</h1>
+                <p class="text-gray-600 mt-2">(FAQ)</p>
+            </div>
+
+            <!-- FAQ Items -->
+            <div class="bg-white/80 backdrop-blur-md rounded-lg shadow-lg overflow-hidden">
+                <!-- FAQ Item 1 -->
+                <div class="border-b border-gray-200 px-6 py-4 faq-item">
+                    <button class="w-full text-left flex justify-between items-center focus:outline-none group faq-toggle">
+                        <span class="text-lg font-medium text-gray-800 group-hover:text-yellow-900 transition-colors">
+                            1. Mengapa prediksi harga mobil di Amerika ini diperlukan?
+                        </span>
+                        <svg class="w-6 h-6 text-gray-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer mt-2 text-gray-600">
+                        <div class="pb-2">
+                            Perusahaan mobil China Geely Auto bercita-cita memasuki pasar AS dan mendirikan unit manufaktur di sana, memproduksi mobil secara lokal untuk memberikan persaingan terhadap rekan-rekan mereka di AS dan Eropa. Secara spesifik, mereka ingin memahami faktor-faktor yang memengaruhi harga mobil di pasar Amerika.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="border-b border-gray-200 px-6 py-4 faq-item">
+                    <button class="w-full text-left flex justify-between items-center focus:outline-none group faq-toggle">
+                        <span class="text-lg font-medium text-gray-800 group-hover:text-yellow-900 transition-colors">
+                            2. Bagaimana cara menggunakan prediksi harga ini?
+                        </span>
+                        <svg class="w-6 h-6 text-gray-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer mt-2 text-gray-600">
+                        <div class="pb-2">
+                            Anda dapat mengisi form prediksi dengan informasi kendaraan Anda, dan sistem akan memberikan estimasi harga berdasarkan data pasar dan analisis kami.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border-b border-gray-200 px-6 py-4 faq-item">
+                    <button class="w-full text-left flex justify-between items-center focus:outline-none group faq-toggle">
+                        <span class="text-lg font-medium text-gray-800 group-hover:text-yellow-900 transition-colors">
+                            3. Apakah prediksi ini akurat?
+                        </span>
+                        <svg class="w-6 h-6 text-gray-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer mt-2 text-gray-600">
+                        <div class="pb-2">
+                            Prediksi kami didasarkan pada data pasar terbaru dengan menggunakan model statistik terbaik, namun harap diingat bahwa ini adalah perkiraan dan harga aktual mungkin bervariasi tergantung kondisi kendaraan, pasar, dan faktor lainnya.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="border-b border-gray-200 px-6 py-4 faq-item">
+                    <button class="w-full text-left flex justify-between items-center focus:outline-none group faq-toggle">
+                        <span class="text-lg font-medium text-gray-800 group-hover:text-yellow-900 transition-colors">
+                            4. Data apa saja yang diperlukan untuk prediksi?
+                        </span>
+                        <svg class="w-6 h-6 text-gray-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer mt-2 text-gray-600">
+                        <div class="pb-2">
+                            Kami memerlukan informasi dasar seperti merek, tipe bahan bakar, aspirasi, jumlah pintu, tipe bodi, roda penggerak, lokasi dan tipe mesin, jumlah silinder dan fitur lainnya yang dapat anda lihat pada halaman prediksi.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="border-b border-gray-200 px-6 py-4 faq-item">
+                    <button class="w-full text-left flex justify-between items-center focus:outline-none group faq-toggle">
+                        <span class="text-lg font-medium text-gray-800 group-hover:text-yellow-900 transition-colors">
+                            5. Berapa lama proses prediksi berlangsung?
+                        </span>
+                        <svg class="w-6 h-6 text-gray-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer mt-2 text-gray-600">
+                        <div class="pb-2">
+                            Proses prediksi berlangsung secara instan setelah Anda mengisi semua data yang diperlukan. Hasil akan muncul dalam hitungan detik.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 6 -->
+                <div class="border-b border-gray-200 px-6 py-4 faq-item">
+                    <button class="w-full text-left flex justify-between items-center focus:outline-none group faq-toggle">
+                        <span class="text-lg font-medium text-gray-800 group-hover:text-yellow-900 transition-colors">
+                            6. Fitur apa yang signifikan mempengaruhi harga mobil? dan seberapa baik semua fitur tersebut menggambarkan prediksi harga mobil?
+                        </span>
+                        <svg class="w-6 h-6 text-gray-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer mt-2 text-gray-600">
+                        <div class="pb-2">
+                            Berdasarkan hasil analisis dari tim kami, tiga variabel yang paling signifikan dalam memprediksi harga mobil berdasarkan nilai korelasi dimana mendekati 1/-1 adalah ukuran mesin 0.87, index ukuran mobil (total panjang, lebar dan curbweight) 0.83, dan horsepower 0.81 dimana semua memperngaruhi secara positif terhadap harga mobil. Model kami menunjukkan bahwa semua fitur yang digunakan dalam analisis ini dapat menjelaskan sekitar 95% variasi harga mobil di pasar.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 7 -->
+                <div class="px-6 py-4 faq-item">
+                    <button class="w-full text-left flex justify-between items-center focus:outline-none group faq-toggle">
+                        <span class="text-lg font-medium text-gray-800 group-hover:text-yellow-900 transition-colors">
+                            7. Bagaimana jika prediksi harga tidak sesuai dengan harga pasar?
+                        </span>
+                        <svg class="w-6 h-6 text-gray-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-answer mt-2 text-gray-600">
+                        <div class="pb-2">
+                            Prediksi kami merupakan estimasi berdasarkan data historis. Harga aktual bisa berbeda tergantung kondisi pasar, lokasi, trend dan faktor lainnya. Kami selalu merekomendasikan untuk membandingkan dengan beberapa sumber sebelum membuat keputusan dalam produksi, pemasaran dan lainnya.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/static/js/faq.js" defer></script>
+</body>
+</html>
