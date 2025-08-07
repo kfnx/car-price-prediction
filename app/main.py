@@ -54,6 +54,10 @@ def predict(features: CarFeaturesRaw):
 def api_root():
     return {"message": "Selamat datang di API Prediksi Harga Mobil"}
 
+@app.get("/health")
+def health_check():
+    return {"status": "healthy", "service": "car-prediction-api"}
+
 @app.get("/", response_class=HTMLResponse)
 def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})

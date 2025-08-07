@@ -1,0 +1,37 @@
+services:
+  car-prediction-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: car-prediction-app
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/app
+      - ENVIRONMENT=production
+    volumes:
+      # Mount static files and templates for development
+      - ./static:/app/static:ro
+      - ./templates:/app/templates:ro
+      # Mount model directory for model files
+      - ./model:/app/model:ro
+      # Mount data directory if needed
+      - ./data:/app/data:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - car-prediction-network
+
+networks:
+  car-prediction-network:
+    driver: bridge
+
+volumes:
+  # Add any persistent volumes if needed
+  model-data:
+    driver: local 
