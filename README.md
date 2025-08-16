@@ -32,6 +32,9 @@ car-price-prediction/
 ├── data/                 # Dataset yang digunakan untuk training
 │   └── CarPrice_Assignment.csv
 │
+├── notebooks/            # Notebooks model development
+│   └── model_development.ipynb
+|
 ├── templates/            # Frontend files  
 │   └── index.html        # Web interface untuk prediksi
 │   └── faq.html          # Halaman FAQ
