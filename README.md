@@ -58,6 +58,7 @@ car-price-prediction/
 - **Machine Learning:** Scikit-learn, Pandas
 - **Server:** Uvicorn
 - **Containerization:** Docker
+- **MLOps : MLFlow
 
 ---
 
